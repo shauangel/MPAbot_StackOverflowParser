@@ -1,0 +1,141 @@
+swagger: "2.0"
+info:
+  description: "This is a web parsing service designed for Stack Overflow."
+  version: "1.0.2"
+  title: "Stack Overflow Parser"
+tags:
+- name: "RESTful API"
+paths:
+  /search:
+    post:
+      tags:
+        - "RESTful API"
+      summary: "Ask for related Stack Overflow website"
+      description: "Search related information from Google search engine. Response url list."
+      operationId: "searchSOURL"
+      consumes: "application/json"
+      produces: "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Search for related Stack Overflow comments"
+          required: true
+          schema:
+            $ref: "#/definitions/SearchRequest"
+      responses:
+        400:
+          description: Invalid input
+        401:
+          description: Unauthorized error
+        200:
+          description: Success
+          schema:
+            type: object
+            required:
+              - "result"
+            properties:
+              result:
+                type: "array"
+                items:
+                  type: "string"
+  /retrieve:
+    post:
+      tags:
+        - "RESTful API"
+      summary: "Parse full Stack Overflow posts."
+      description: "Retrieve full information of Stack Overflow posts. Insert first-search posts into database."
+      operationId: "retrieveSO"
+      consumes: "application/json"
+      produces: "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Search for related Stack Overflow comments"
+          required: true
+          schema:
+            $ref: "#/definitions/SearchRequest"
+      responses:
+        400:
+          description: Invalid input
+        401:
+          description: Unauthorized error
+        200:
+          description: Success
+          schema:
+            type: object
+            required:
+              - "result"
+            properties:
+              result:
+                type: "array"
+                items:
+                  $ref: "#/definitions/StackData"
+
+definitions:
+  SearchRequest:
+    type: "object"
+    required:
+      - "keywords"
+      - "result_num"
+      - "page_num"
+    properties:
+      keywords:
+        type: "array"
+        items:
+          type: "string"
+        example:
+          - "flask"
+          - "CORS"
+          - "error"
+      result_num:
+        type: "integer"
+        format: "int64"
+        example: 5
+      page_num:
+        type: "integer"
+        format: "int64"
+        example: 0
+  StackData:
+    type: "object"
+    required:
+      - "link"
+      - "tags"
+      - "question"
+      - "answers"
+    properties:
+      link:
+        type: "string"
+      tags:
+        type: "array"
+        items:
+          type: "string"
+      question:
+        type: "object"
+        required:
+          - "id"
+          - "title"
+          - "content"
+        properties:
+          id:
+            type: "string"
+          title:
+            type: "string"
+          content:
+            type: "string"
+      answers:
+        type: "array"
+        items:
+          type: "object"
+          required:
+            - "id"
+            - "vote"
+            - "content"
+            - "parent"
+          properties:
+            id:
+              type: "string"
+            vote:
+              type: "integer"
+              format: int64
+            content:
+              type: "string"

@@ -1,0 +1,7 @@
+pymongo
+flask
+beautifulsoup4
+requests
+pytz
+google
+flasgger
