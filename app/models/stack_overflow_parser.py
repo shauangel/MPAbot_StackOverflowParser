@@ -89,7 +89,10 @@ class StackData:
                             "id": q["question_id"],
                             "title": q["title"],
                             "content": self.get_pure_text(q["body"]),
-                            "views" : q["view_count"]},
+                            "view_count" : q["view_count"],
+                            "last_activity_date": q["last_activity_date"],
+                            "creation_date": q["creation_date"]
+                        },
                         "answers": []
                     })
                     self.__questions.append(q["title"])
@@ -111,7 +114,8 @@ class StackData:
                     self.__results[idx]["answers"].append({
                         "id": ans["answer_id"],
                         "score": ans["score"],
-                        "content": self.get_pure_text(ans["body"])
+                        "content": self.get_pure_text(ans["body"]),
+                        "owner_reputation": ans['owner']['reputation']
                     })
                     # print(ans)
             except Exception as err:
@@ -120,7 +124,16 @@ class StackData:
 
     # get id list
     def get_ids(self):
-        return self.__ids
+        ids = [int(i) for i in self.__ids]
+        return ids
+
+    # set new ids
+    def set_ids(self, new_ids):
+        self.__ids = [str(i) for i in new_ids]
+        # update links
+        self.__links = [self.__links[str(i)] for i in self.__ids]
+        print(self.__ids)
+        print(self.__links)
 
     # cleaning html tags
     @staticmethod
@@ -161,4 +174,3 @@ def tester():
 
 if __name__ == "__main__":
     print("Stack Overflow Parser v.0")
-    t = tester()

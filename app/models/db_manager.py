@@ -1,17 +1,14 @@
 from pymongo import MongoClient
 from pytz import timezone
 from datetime import datetime as dt
-
-# testing database
-client = MongoClient("mongodb+srv://psabot:BmueEwQFrYx3IUBk@stackoverflow.b2tyvk9.mongodb.net/")
+import json
 
 # container
-# client = MongoClient("mongo:27017")
-
+client = MongoClient("mongodb://so-parser-mongo:27017/so-parser_db")
+test_client = MongoClient("mongodb://localhost:50002/")
 # specify collections
-DB = client['SOService']
+DB = test_client['SOService']
 POSTS_COLLECTION = DB['Posts']
-POSTS_CACHE_COLLECTION = DB['PostsCache']
 
 TEST_DATA = DB['TestData']
 
@@ -25,23 +22,28 @@ def get_curr_time():
 
 
 # query multiple posts in post cache collection by question id
-def query_post_cache_by_id(id_list):
+def query_post_by_id(id_list):
     query = {"question.id": {"$in": id_list}}
-    cursor = TEST_DATA.find(query)
-    # cursor = POSTS_CACHE_COLLECTION.find(query)
-    result = [d for d in cursor]
+    cursor = POSTS_COLLECTION.find(query)
+    # remove object id
+    result = []
+    for d in cursor:
+        d.pop("_id")
+        result.append(d)
+    # result = [d for d in cursor]
+    print(result)
     return result
 
 
 # insert multiple posts into post cache collection
-def insert_posts_cache(data_list):
+def insert_posts(data_list):
     # record insert time
     time = get_curr_time()
     for d in data_list:
         d["date"] = time
     # insert post data
-    result = POSTS_CACHE_COLLECTION.insert_many(data_list)
-    print(result)
+    result = POSTS_COLLECTION.insert_many(data_list)
+    return result
 
 
 # delete multiple posts from cache according to question ids
@@ -60,9 +62,6 @@ def cache_maintenance():
 
 
 if __name__ == "__main__":
-    # test_data = p.tester()
-    # insert_posts_cache(test_data)
-    test_find = [75017173, 21956683]
-    # delete_posts_cache(test_del)
-    r = query_post_cache_by_id(test_find)
-    print(len(r))
+    print("Stack Overflow DB Manager")
+
+

@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "This is a web parsing service designed for Stack Overflow."
-  version: "1.0.2"
+  version: "2.0.0"
   title: "Stack Overflow Parser"
 tags:
 - name: "RESTful API"
@@ -84,7 +84,7 @@ definitions:
         items:
           type: "string"
         example:
-          - "flask"
+          - "app"
           - "CORS"
           - "error"
       result_num:

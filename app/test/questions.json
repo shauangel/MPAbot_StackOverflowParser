@@ -1,0 +1,83 @@
+{
+  "GeneralQuestions": [
+    "Is there a source code level debugger with breakpoints, single-stepping, etc.?",
+    "Are there tools to help find bugs or perform static analysis?",
+    "How can I create a stand-alone binary from a Python script?",
+    "Are there coding standards or a style guide for Python programs?"
+  ],
+  "CoreLanguage": [
+    "What are the “best practices” for using import in a module?",
+    "Why did changing list ‘y’ also change list ‘x’?",
+    "What’s up with the comma operator’s precedence?",
+    "Is there an equivalent of C’s “?:” ternary operator?",
+    "Why am I getting an UnboundLocalError when the variable has a value?",
+    "What are the rules for local and global variables in Python?",
+    "Why do lambdas defined in a loop with different values all return the same result?",
+    "How do I share global variables across modules?",
+    "Why are default values shared between objects?",
+    "How can I pass optional or keyword parameters from one function to another?",
+    "What is the difference between arguments and parameters?",
+    "How do I write a function with output parameters (call by reference)?",
+    "How do you make a higher order function in Python?",
+    "How do I copy an object in Python?",
+    "How can I find the methods or attributes of an object?",
+    "How can my code discover the name of an object?",
+    "Is it possible to write obfuscated one-liners in Python?",
+    "What does the slash(/) in the parameter list of a function mean?"
+  ],
+  "NumbersAndstrings": [
+    "Is there an equivalent to Perl’s chomp() for removing trailing newlines from strings?",
+    "What does ‘UnicodeDecodeError’ or ‘UnicodeEncodeError’ error mean?",
+    "How do I specify hexadecimal and octal integers?",
+    "Why does -22 // 10 return -3?",
+    "How do I get int literal attribute instead of SyntaxError?",
+    "How do I convert a string to a number?",
+    "How do I convert a number to a string?",
+    "How do I modify a string in place?",
+    "How do I use strings to call functions/methods?",
+    "Is there a scanf() or sscanf() equivalent?",
+    "Can I end a raw string with an odd number of backslashes?"
+  ],
+  "Performance": [
+    "My program is too slow. How do I speed it up?",
+    "What is the most efficient way to concatenate many strings together?"
+  ],
+  "Sequences_TuplesLists": [
+    "Why does a_tuple[i] += [‘item’] raise an exception when the addition works?",
+    "How do I convert between tuples and lists?",
+    "What is a negative index?",
+    "How do I iterate over a sequence in reverse order?",
+    "How do you remove duplicates from a list?",
+    "How do you remove multiple items from a list",
+    "How do you make an array in Python?",
+    "How do I create a multidimensional list?",
+    "How do I apply a method or function to a sequence of objects?",
+    "I want to do a complicated sort: can you do a Schwartzian Transform in Python?",
+    "How can I sort one list by values from another list?"
+  ],
+  "Objects": [
+    "What is a class?",
+    "What is a method?",
+    "What is self?",
+    "How do I check if an object is an instance of a given class or of a subclass of it?",
+    "What is delegation?",
+    "How do I call a method defined in a base class from a derived class that extends it?",
+    "How can I organize my code to make it easier to change the base class?",
+    "How do I create static class data and static class methods?",
+    "How can I overload constructors (or methods) in Python?",
+    "I try to use __spam and I get an error about _SomeClassName__spam.",
+    "My class defines __del__ but it is not called when I delete the object.",
+    "How do I get a list of all instances of a given class?",
+    "Why does the result of id() appear to be not unique?",
+    "When can I rely on identity tests with the is operator?",
+    "How can a subclass control what data is stored in an immutable instance?",
+    "How do I cache method calls?"
+  ],
+  "Modules": [
+    "How do I create a .pyc file?",
+    "How do I find the current module name?",
+    "How can I have modules that mutually import each other?",
+    "When I edit an imported module and reimport it, the changes don’t show up. Why does this happen?",
+    "__import__(‘x.y.z’) returns <module ‘x’>; how do I get z?"
+  ]
+}
