@@ -5,9 +5,9 @@ import json
 
 # container
 client = MongoClient("mongodb://so-parser-mongo:27017/so-parser_db")
-test_client = MongoClient("mongodb://localhost:50002/")
+# test_client = MongoClient("mongodb://localhost:50002/")
 # specify collections
-DB = test_client['SOService']
+DB = client['SOService']
 POSTS_COLLECTION = DB['Posts']
 
 TEST_DATA = DB['TestData']
@@ -40,7 +40,7 @@ def insert_posts(data_list):
     # record insert time
     time = get_curr_time()
     for d in data_list:
-        d["date"] = time
+        d["saved_time"] = time
     # insert post data
     result = POSTS_COLLECTION.insert_many(data_list)
     return result

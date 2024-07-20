@@ -6,11 +6,11 @@ so_parser_url = "http://localhost"
 
 
 if __name__ == "__main__":
-    with open("samples.json", "r", encoding="utf-8") as file:
+    with open("../../../CodeProject_Parsing_Service/app/test/samples.json", "r", encoding="utf-8") as file:
         questions = json.load(file)
     file.close()
 
-    rand_q = {}
+    # rand_q = {}
     for cat in questions:
         print(">> Category: " + cat)
         for x in range(3 if len(questions[cat]) > 3 else len(questions[cat])):
